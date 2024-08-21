@@ -36,12 +36,12 @@ git clone https://github.com/Rafiqdevhub/Job-Portal-and-Recruitment-System.git
 cd job-portal-recruitment-system
 ```
 
-# Install backend dependencies
+### Install backend dependencies
 
 cd backend
 npm install
 
-# Install frontend dependencies
+### Install frontend dependencies
 
 cd ../frontend
 npm install
