@@ -1,6 +1,5 @@
 const Job = require("../models/jobModel");
 
-// admin post krega job
 const postJob = async (req, res) => {
   try {
     const {
@@ -28,7 +27,7 @@ const postJob = async (req, res) => {
       !companyId
     ) {
       return res.status(400).json({
-        message: "Somethin is missing.",
+        message: "Please fill all fields.",
         success: false,
       });
     }
@@ -50,10 +49,10 @@ const postJob = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({ message: error.message, success: false });
   }
 };
-// student k liye
+
 const getAllJobs = async (req, res) => {
   try {
     const keyword = req.query.keyword || "";
@@ -67,7 +66,7 @@ const getAllJobs = async (req, res) => {
       .populate({
         path: "company",
       })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 }); // The most recent job will be displayed first(descending order)
     if (!jobs) {
       return res.status(404).json({
         message: "Jobs not found.",
@@ -79,10 +78,10 @@ const getAllJobs = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({ message: error.message, success: false });
   }
 };
-// student
+
 const getJobById = async (req, res) => {
   try {
     const jobId = req.params.id;
@@ -91,16 +90,16 @@ const getJobById = async (req, res) => {
     });
     if (!job) {
       return res.status(404).json({
-        message: "Jobs not found.",
+        message: "No job found.",
         success: false,
       });
     }
     return res.status(200).json({ job, success: true });
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({ message: error.message, success: false });
   }
 };
-// admin kitne job create kra hai abhi tk
+
 const getAdminJobs = async (req, res) => {
   try {
     const adminId = req.id;
@@ -110,7 +109,7 @@ const getAdminJobs = async (req, res) => {
     });
     if (!jobs) {
       return res.status(404).json({
-        message: "Jobs not found.",
+        message: "No jobs found",
         success: false,
       });
     }
@@ -119,7 +118,7 @@ const getAdminJobs = async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return res.status(500).json({ message: error.message, success: false });
   }
 };
 
