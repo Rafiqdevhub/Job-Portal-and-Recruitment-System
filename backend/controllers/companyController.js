@@ -14,7 +14,7 @@ const registerCompany = async (req, res) => {
     let company = await Company.findOne({ name: companyName });
     if (company) {
       return res.status(400).json({
-        message: "You can't register same company.",
+        message: "Company already exists.",
         success: false,
       });
     }
@@ -32,9 +32,10 @@ const registerCompany = async (req, res) => {
     res.status(500).json({ message: error.message, success: false });
   }
 };
+
 const getCompany = async (req, res) => {
   try {
-    const userId = req.id; // logged in user id
+    const userId = req.id;
     const companies = await Company.find({ userId });
     if (!companies) {
       return res.status(404).json({
@@ -51,14 +52,13 @@ const getCompany = async (req, res) => {
   }
 };
 
-// get company by id
 const getCompanyById = async (req, res) => {
   try {
     const companyId = req.params.id;
     const company = await Company.findById(companyId);
     if (!company) {
       return res.status(404).json({
-        message: "Company not found.",
+        message: "No company found.",
         success: false,
       });
     }
@@ -70,18 +70,15 @@ const getCompanyById = async (req, res) => {
     res.status(500).json({ message: error.message, success: false });
   }
 };
+
 const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
-
     const file = req.file;
-    // idhar cloudinary ayega
     const fileUri = getDataUri(file);
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
     const logo = cloudResponse.secure_url;
-
     const updateData = { name, description, website, location, logo };
-
     const company = await Company.findByIdAndUpdate(req.params.id, updateData, {
       new: true,
     });
