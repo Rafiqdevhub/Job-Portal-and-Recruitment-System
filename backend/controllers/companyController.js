@@ -1,5 +1,5 @@
 const Company = require("../models/companyModel.js");
-const getDataUri = require("../utils/datauri.js");
+const getDataUri = require("../utils/getDataUri.js");
 const cloudinary = require("../utils/cloudinary.js");
 
 const registerCompany = async (req, res) => {
