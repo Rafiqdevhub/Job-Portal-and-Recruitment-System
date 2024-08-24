@@ -1,8 +1,8 @@
-const { User } = require("../models/userModel.js");
+const User = require("../models/userModel.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const getDataUri = require("../utils/datauri.js");
 const cloudinary = require("../utils/cloudinary.js");
+const getDataUri = require("../utils/getDataUri.js");
 
 const register = async (req, res) => {
   try {
@@ -43,6 +43,7 @@ const register = async (req, res) => {
       success: true,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message, success: false });
   }
 };
