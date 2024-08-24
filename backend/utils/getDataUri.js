@@ -8,4 +8,3 @@ const getDataUri = (file) => {
 };
 
 module.exports = getDataUri;
-// Compare this snippet from backend/utils/cloudinary.js:
