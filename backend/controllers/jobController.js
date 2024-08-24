@@ -49,6 +49,7 @@ const postJob = async (req, res) => {
       success: true,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: error.message, success: false });
   }
 };
@@ -78,6 +79,7 @@ const getAllJobs = async (req, res) => {
       success: true,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: error.message, success: false });
   }
 };
@@ -96,6 +98,7 @@ const getJobById = async (req, res) => {
     }
     return res.status(200).json({ job, success: true });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: error.message, success: false });
   }
 };
@@ -118,6 +121,7 @@ const getAdminJobs = async (req, res) => {
       success: true,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: error.message, success: false });
   }
 };

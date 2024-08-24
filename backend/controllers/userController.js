@@ -61,14 +61,14 @@ const login = async (req, res) => {
     let user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
-        message: "Incorrect email or password.",
+        message: "Incorrect email.",
         success: false,
       });
     }
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(400).json({
-        message: "Incorrect email or password.",
+        message: "Incorrect  password.",
         success: false,
       });
     }
@@ -101,6 +101,7 @@ const login = async (req, res) => {
       })
       .json({ message: `Welcome back ${user.fullname}`, user, success: true });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message, success: false });
   }
 };
@@ -113,6 +114,7 @@ const logout = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: error.message, success: false });
   }
 };
 const updateProfile = async (req, res) => {
@@ -160,6 +162,7 @@ const updateProfile = async (req, res) => {
       success: true,
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message, success: false });
   }
 };
