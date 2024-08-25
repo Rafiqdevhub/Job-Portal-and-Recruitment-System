@@ -17,7 +17,7 @@ This project is a **Job Portal and Recruitment System** built using the MERN sta
 ## Tech Stack
 
 - **Frontend**: React.js, Tailwind CSS, Axios, React Router, framer motion
-- **Backend**: Node.js, Express.js, MongoDB, JWT for authentication, datauri, cloudinary, bacrypt,
+- **Backend**: Node.js, Express.js, MongoDB, JWT for authentication, datauri, cloudinary, bycrypt,
 - **Database**: MongoDB
 - **State Management**: Redux toolkit
 - **Styling**: Tailwind CSS, Shadcn UI
