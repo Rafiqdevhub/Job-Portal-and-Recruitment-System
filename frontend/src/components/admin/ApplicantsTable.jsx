@@ -68,7 +68,7 @@ const ApplicantsTable = () => {
                       {item?.applicant?.profile?.resumeOriginalName}
                     </a>
                   ) : (
-                    <span>NA</span>
+                    <span>No Applied</span>
                   )}
                 </TableCell>
                 <TableCell>{item?.applicant.createdAt.split("T")[0]}</TableCell>
